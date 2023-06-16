@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>3-tier Architecture</title>
+		<style>
+			hr{
+				background-color: black;
+				height: 1px;
+			}
+		</style>
+</head>
+<body>
+	<div>
+		<img src="https://github.com/GourabGITHUB/SomethingCloud/blob/master/Aws_architecture.jpg" class="img-responsive" alt="diagram">
+	</div>
+<h2> <ol>
+	This is a 3 tier architecture solution for hosting a web application that receives client requests and uses MySQL to query data and send it back to client.
+</ol>
+</h2>
+<hr>
+<p> <ul>
+The web application will be deployed to <b>EC2</b>, we will create 1 <b>VPC</b> with 2 public subnets and 4 private subnets.
+we will place two <b>EC2</b>instances inside a public subnet which will serve the front end interface or web tier of the architecture, we will be using multiple instances with two availability zones for more redundancy.
+<p>
+we will create two more identical <b>EC2</b>instances in <b>Auto Scaling Group</b> to provide horizontal scalability during high traffic by adding instances as required, we can configure with a maximum 4 instances with desired of 3 and minimum 2 instances .</p>
+<p>
+<b>Application Load Balancer</b> will be used to distribute traffic to <b>EC2</b>instances, we will configure security groups with all the resources to control inbound and outbound traffic and manage permissions.
+we will create <b>Auto Scaling Group</b> with application and data tier independently </p>
+<p>
+For database we will be using <b>RDS MySQL</b> database, this will be running on a different instance than application tier and will replicate data in the second availability zone. </p>
+<p>
+We will use <b>CloudWatch</b> service for monitoring and optimizing resources, since we are using <b>Auto Scaling Group</b>, <b>CloudWatch</b> can monitor the instance usage and send alerts to <b>Auto Scaling Group</b> for adding instances and <b>Application Load Balancer</b> will then run health check and then new instances can receive traffic.
+</ul>	
+</p>
+<hr>
+
+</body>
+</html>
+
+
+
